@@ -12,7 +12,8 @@ body {
   padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 800px;
+  min-width: 320px;
+  max-width: 800px;
 }
 
 .main {
@@ -27,17 +28,21 @@ body {
 }
 
 header {
-  height: 250px;
+  min-height: 250px;
   background-color: #313131;
   border-top-left-radius: 30px;
 }
 
 .header-inner-box {
-  position: relative;
+  min-height: 250px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   background-color: #d4d4d4;
   border-bottom: 2px solid black;
-  border-bottom-right-radius: 100px;
+  border-bottom-right-radius: 50px;
   border-top-left-radius: 100px;
 }
 
@@ -49,21 +54,12 @@ header {
 .header-inner-box img {
   height: 200px;
   margin-right: 20px;
-  position: absolute;
-  left: 20px;
+  margin-left: 20px;
   border-top-left-radius: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.align-vcenter {
-  position: absolute;
-  left: 170px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 h1 {
+  text-align: center;
   font-size: 2.5rem;
   margin-top: 0.6rem;
   margin-bottom: 0.8rem;
@@ -87,8 +83,9 @@ li {
   margin-left: 16px;
 }
 
-li > span:not(:last-of-type)::after {
-  content:" • ";
+li > span {
+	display: block;
+	margin-bottom: 3px;
 }
 
 .description {
@@ -100,16 +97,39 @@ address {
   font-style: unset;
   margin-top: 0;
   margin-bottom: 0;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 address p {
   padding-left: 16px;
   margin-bottom: 0;
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   margin-top: 0.4rem;
 }
 
 address a {
   text-decoration: none;
   color: #313131;
+}
+
+@media screen and ( min-width: 500px ) {
+	.header-inner-box {
+		flex-direction: row;
+		border-bottom-right-radius: 100px;
+	}
+
+	h1 {
+		text-align: unset;
+	}
+
+	li > span {
+		margin-bottom: 0;
+		display: inline;
+	}
+
+	li > span:not(:last-of-type)::after {
+		content:" • ";
+	}
 }
