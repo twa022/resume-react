@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="description" content="Resume of Sally Student, Yellow Sweater Expert">
+		<title>Sally Student Resume</title>
+
+		<!-- fonts	-->
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div id="application-root"></div>
+		<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<script type="text/babel">
+			function formatPhoneNumber( number ) {
+				if ( typeof( Number( number ) ) !== "number" ) {
+					console.log( `not a number; ${typeof( Number( number ) )}` );
+					return number;
+				}
+				if ( number.length === 7 ) {
+					return `${number.slice(0,3)}-${number.slice(3,7)}`;
+				}
+				if ( number.length === 10 ) {
+					return `(${number.slice(0,3)}) ${number.slice(3,6)}-${number.slice(6,10)}`;
+				}
+				return number;
+			}
+			
+			function HeaderSection( props ) {
+				return (
+					<header>
+						<section className="header-inner-box">
+							<div className="inline">
+								<img src={props.image} alt={props.name + " Headshot"} />
+							</div>
+							<div className="inline align-vcenter">
+								<h1>{props.name}</h1>
+								<h2 hidden>Contact Information</h2>
+								<address>
+									<p><a href={'mailto:' + props.email}>{props.email}</a></p>
+									<p><a href={'tel://+1' + props.phone}>{formatPhoneNumber(props.phone)}</a></p>
+								</address>
+							</div>
+						</section>
+					</header>
+				);
+			}
+
+			function EducationSection( props ) {
+				let educationList = [];
+				props.listings.forEach( ( x, i ) => {
+					educationList.push( (
+						<li key={"education" + i}>
+							<span className="org-name">{x.institution}</span>
+							<span className="time-range">{x.startDate}&ndash;{x.endDate}</span>
+							<span className="degree">{x.degree}</span>
+						</li>
+					) );
+				});
+						
+				return (
+					<section className="education">
+						<h2>Education</h2>
+						<ol>
+							{educationList}
+						</ol>
+					</section>
+				);
+			}
+
+			function EmploymentSection( props ) {
+				let employmentList = [];
+				props.listings.forEach( ( x, i ) => {
+					employmentList.push( (
+						<li className="indent-p" key={"employment" + i}>
+							<span className="org-name">{x.employer}</span>
+							<span className="time-range">{x.startDate}&ndash;{x.endDate}</span>
+							<span className="job-title">{x.position}</span>
+							<p>{x.description}</p>
+						</li>
+					) );
+				});
+				return (
+					<section className="employment">
+						<h2>Employment</h2>
+						<ol>
+							{employmentList}
+						</ol>
+					</section>
+				);
+			}
+
+			function SkillsList( props ) {
+				let skillsList = [];
+				props.skills.forEach( ( x, i ) => {
+					skillsList.push( (
+						<li key={"skill" + i}>{x}</li>
+					) );
+				});
+				return (
+					<section className="skills">
+						<h2>Skills</h2>
+						<ul>
+							{skillsList}
+						</ul>
+					</section>
+				);
+			}
+
+			function AwardsList( props ) {
+				let awardsList = [];
+				props.awards.forEach( ( x, i ) => {
+					awardsList.push( (
+						<li key={"award" + i}>
+							<span className="org-name">{x.organization}</span>
+							<span className="date">{x.date}</span>
+							<span className="award-name">{x.award}</span>
+						</li>
+					) );
+				});
+				return (
+					<section className="awards">
+						<h2>Awards</h2>
+						<ul>
+							{awardsList}
+						</ul>
+					</section>
+				);
+			}
+			
+			function App() {
+				return (
+					<div className="main">
+					<HeaderSection
+						name="Sally Student"
+						email="sally.student@emailaddress.com"
+						image="https://m.media-amazon.com/images/M/MV5BMTY5NzE3NzU3MF5BMl5BanBnXkFtZTgwMjg0NTQ5MDE@._V1_.jpg"
+						phone="5551234567"
+					/>
+					<EducationSection
+						listings = { [
+							{
+								institution: 'Temple University',
+								startDate: '7/2012',
+								endDate: '1/2014',
+								degree: "Master's of Sweaters"
+							},
+							{
+								institution: 'North Carolina State University',
+								startDate: '8/2002',
+								endDate: '5/2006',
+								degree: "Bachelor's of Science in Yellow Sweaters"
+							}
+						] }
+								
+					/>
+					<EmploymentSection
+						listings = { [
+							{
+								employer: "Most Recent Employer Inc",
+								startDate: "4/2019",
+								endDate: "1/2020",
+								position: "Head of Important Things",
+								description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+							},
+							{
+								employer: "Penultimate, Ltd.",
+								startDate: "4/2014",
+								endDate: "1/2019",
+								position: "Assistant to the VP of Yellow Sweaters",
+								description: "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+							}
+						] }
+					/>
+					<SkillsList
+						skills = { [
+							"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+							"The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.",
+							"as opposed to using 'Content here, content here'"
+						] }
+					/>
+					<AwardsList
+						awards = { [
+							{
+								organization: "Natinal Association of Sweaters",
+								award: "Golden Sweater for Excellence in Yellow Sweaters",
+								date: "2017"
+							}
+						] }
+					/>
+					</div>
+				);
+			}
+			
+			ReactDOM.render( <App />, document.getElementById('application-root') );
+		</script>
+	</body>
+</html>

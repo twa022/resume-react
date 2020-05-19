@@ -1,0 +1,115 @@
+:root {
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+}
+
+.main {
+  border: solid black 2px;
+  border-top-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+
+.main > section {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+header {
+  height: 250px;
+  background-color: #313131;
+  border-top-left-radius: 30px;
+}
+
+.header-inner-box {
+  position: relative;
+  height: 100%;
+  background-color: #d4d4d4;
+  border-bottom: 2px solid black;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 100px;
+}
+
+.inline {
+  display: inline-block;
+  padding: 0;
+}
+
+.header-inner-box img {
+  height: 200px;
+  margin-right: 20px;
+  position: absolute;
+  left: 20px;
+  border-top-left-radius: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.align-vcenter {
+  position: absolute;
+  left: 170px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+ol {
+  list-style-type: square;
+}
+
+li {
+  margin-bottom: 16px;
+}
+
+.indent-p p {
+  margin-left: 16px;
+}
+
+li > span:not(:last-of-type)::after {
+  content:" • ";
+}
+
+.description {
+  font-size: 0.9rem;
+}
+
+address {
+  /* Italics makes this harder to read */
+  font-style: unset;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+address p {
+  padding-left: 16px;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  margin-top: 0.4rem;
+}
+
+address a {
+  text-decoration: none;
+  color: #313131;
+}
